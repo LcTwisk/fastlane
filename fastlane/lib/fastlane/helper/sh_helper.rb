@@ -38,7 +38,8 @@ module Fastlane
       command = [command.first.join(" ")] if command.length == 1 && command.first.kind_of?(Array)
 
       shell_command = shell_command_from_args(*command)
-      UI.command(shell_command) if print_command
+      UI.important("INPUT")
+      UI.command(shell_command)
 
       result = ''
       exit_status = nil
@@ -54,7 +55,8 @@ module Fastlane
         Open3.popen2e(*command) do |stdin, io, thread|
           io.sync = true
           io.each do |line|
-            UI.command_output(line.strip) if print_command_output
+            UI.important("OUTPUT") 
+            UI.command_output(line.strip)
             result << line
           end
           exit_status = thread.value
