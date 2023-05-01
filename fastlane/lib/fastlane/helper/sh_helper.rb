@@ -26,7 +26,7 @@ module Fastlane
     # @yieldparam [String] cmd A shell command equivalent to the arguments passed
     # rubocop: disable Metrics/PerceivedComplexity
     def self.sh_control_output(*command, print_command: true, print_command_output: true, error_callback: nil)
-      print_command = print_command_output = true if $troubleshoot
+      print_command = true
       # Set the encoding first, the user might have set it wrong
       previous_encoding = [Encoding.default_external, Encoding.default_internal]
       Encoding.default_external = Encoding::UTF_8
